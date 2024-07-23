@@ -1,15 +1,25 @@
-import create from 'zustand'
+import create from 'zustand';
 
-const useStore = create(() => ({
-
-    // 유저 정보 (로그인 시 유효)
+const useStore = create((set) => ({
     user: {
         isLoggedIn: false,
         userInfo: null,
-        token: null
-    }
-    // 로그인, 로그아웃 메서드 구현 예정
+        token: null,
+    },
+    login: (userInfo, token) => set({
+        user: {
+            isLoggedIn: true,
+            userInfo,
+            token,
+        }
+    }),
+    logout: () => set({
+        user: {
+            isLoggedIn: false,
+            userInfo: null,
+            token: null,
+        }
+    }),
+}));
 
-}))
-
-export default useStore
+export default useStore;
