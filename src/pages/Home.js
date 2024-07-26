@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
+import { getPosts } from '../apis/api';
 
 function Home() {
   const [posts, setPosts] = useState([
