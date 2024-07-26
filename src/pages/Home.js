@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
 import { getPosts } from '../apis/api';
 
 function Home() {
-  const [posts, setPosts] = useState([
-    { title: '첫 번째 게시글', content: '안녕하세요, 첫 번째 게시글입니다.' },
-    { title: '두 번째 게시글', content: '안녕하세요, 두 번째 게시글입니다.' },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const data = await getPosts();      
+      setPosts(data);
+    };
+    fetchPosts();
+  }, []);
 
   const addPost = (post) => {
     setPosts([post, ...posts]);
