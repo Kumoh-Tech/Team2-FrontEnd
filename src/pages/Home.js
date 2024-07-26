@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PostForm from '../components/PostForm';
 import { getPosts } from '../apis/api';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -14,14 +14,10 @@ function Home() {
     fetchPosts();
   }, []);
 
-  const addPost = (post) => {
-    setPosts([post, ...posts]);
-  };
-
   return (
     <div>
       <h2>게시판</h2>
-      <PostForm addPost={addPost} />
+      <Link to='/write'>작성</Link>
       {
         posts.map((post, i) => (
           <div key={i}>
