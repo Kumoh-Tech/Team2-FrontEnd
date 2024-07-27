@@ -3,6 +3,7 @@ import './styles/Components.css'
 import Navbar from './components/Navbar.js'
 import Home from './pages/Home.js'
 import Enroll from './pages/Enroll.js'
+import PostWrite from './pages/PostWrite.js'
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/write" element={<PostWrite />} />
         <Route path="/timetable" element={<div> 시간표 페이지 </div>} />
         <Route path="/lecture" element={<div> 강의실 페이지 </div>} />
         <Route path="/sugang" element={<Enroll />}></Route>
