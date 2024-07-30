@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { addPost } from '../apis/api';
+import { useNavigate } from 'react-router-dom';
 
 function PostWrite() {
+
+    const navigate = useNavigate();
 
     // 잘 되긴 하는데 방법이 좀 이상하다.. 최적화가 필요할 듯
 
@@ -12,11 +15,10 @@ function PostWrite() {
         e.preventDefault();
         try {
             await addPost({ title, content });
-            setTitle('');
-            setContent('');            
         } catch (error) {
             console.error('Error adding post:', error);
         }
+        navigate('/');
     };
 
     return (

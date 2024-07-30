@@ -14,9 +14,9 @@ const getPosts = async () => {
 }
 
 // INSERT (title, content) into post
-const addPost = async (post) => {
+const addPost = (post) => {
     try {
-        const result = await axios.post('http://localhost:8080/', post);
+        const result = axios.post('http://localhost:8080/', post);
         return result.data;
     } catch (error) {
         console.error('Error adding post:', error);
