@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addPost, getPost } from '../apis/api';
+import { addPost, getPost, updatePost } from '../apis/api';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PostWrite() {
@@ -10,7 +10,7 @@ function PostWrite() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
-    // 서버에서 게시글을 가져온다. (SELECT * from post where id = i)
+    // 서버에서 게시글을 가져온다. (수정 페이지로 쓰이는 경우에만 해당)
     useEffect(() => {
         if (id) {
             const fetchPost = async (i) => {
@@ -22,21 +22,24 @@ function PostWrite() {
         }
     }, []);
 
-    // 디버깅용임 (삭제 예정)
-    if (id) {
-        console.log(`이곳은 ${id}번 게시글 수정 페이지`);
-    } else {
-        console.log('이곳은 새로운 게시글 작성페이지');
-    }
-
+    // 수정 페이지라면 PUT 요청, 새 게시글 작성 페이지라면 POST 요청
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await addPost({ title, content });
-        } catch (error) {
-            console.error('Error adding post:', error);
+        if (id) {
+            try {
+                await updatePost(id, { title, content });
+            } catch (error) {
+                console.error('Error updating post:', error);
+            }
+            navigate(`/post/${id}`);
+        } else {
+            try {
+                await addPost({ title, content });
+            } catch (error) {
+                console.error('Error adding post:', error);
+            }
+            navigate('/');
         }
-        navigate('/');
     };
 
     return (

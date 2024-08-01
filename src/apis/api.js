@@ -46,4 +46,15 @@ const delPost = (i) => {
     }
 }
 
-export { getPosts, getPost, addPost, delPost };
+// 특정 게시글을 수정한다.   => UPDATE post SET title = (edited title), content = (edited content) WHERE id = i
+const updatePost = (i, data) => {
+    try {
+        const result = axios.put(`http://localhost:8080/${i}`, data);
+        return result.data;
+    } catch (error) {
+        console.error('Error updating post:', error);
+        throw error;
+    }
+}
+
+export { getPosts, getPost, addPost, delPost, updatePost };
