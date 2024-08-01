@@ -35,4 +35,15 @@ const addPost = (post) => {
     }
 };
 
-export { getPosts, getPost, addPost };
+// 특정 게시글을 삭제한다.   => DELETE from post where id = i
+const delPost = (i) => {
+    try {
+        const result = axios.delete(`http://localhost:8080/${i}`);
+        return result.data;
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        throw error;
+    }
+}
+
+export { getPosts, getPost, addPost, delPost };
