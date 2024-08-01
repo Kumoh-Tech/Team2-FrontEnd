@@ -29,7 +29,7 @@ function Post() {
         <div>
             <h3>{post.title}</h3>
             <p>{post.content}</p>
-            <button>✏️</button>
+            <button onClick={() => navigate(`/edit/${post.id}`)}>✏️</button>
             <button onClick={() => handleDel(post.id)}>🗑️</button>
         </div>
     )

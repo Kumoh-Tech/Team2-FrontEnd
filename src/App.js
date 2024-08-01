@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post/:id" element={<Post />}></Route>
         <Route path="/write" element={<PostWrite />} />
+        <Route path="/edit/:id" element={<PostWrite />}></Route>
         <Route path="/timetable" element={<div> 시간표 페이지 </div>} />
         <Route path="/lecture" element={<div> 강의실 페이지 </div>} />
         <Route path="/sugang" element={<Enroll />}></Route>

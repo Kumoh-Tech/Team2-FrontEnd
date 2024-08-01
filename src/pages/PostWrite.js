@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
-import { addPost } from '../apis/api';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { addPost, getPost } from '../apis/api';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PostWrite() {
 
+    const { id } = useParams();
     const navigate = useNavigate();
-
-    // 잘 되긴 하는데 방법이 좀 이상하다.. 최적화가 필요할 듯
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    // 서버에서 게시글을 가져온다. (SELECT * from post where id = i)
+    useEffect(() => {
+        if (id) {
+            const fetchPost = async (i) => {
+                const data = await getPost(i);
+                setTitle(data.title);
+                setContent(data.content);
+            };
+            fetchPost(id);
+        }
+    }, []);
+
+    // 디버깅용임 (삭제 예정)
+    if (id) {
+        console.log(`이곳은 ${id}번 게시글 수정 페이지`);
+    } else {
+        console.log('이곳은 새로운 게시글 작성페이지');
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
