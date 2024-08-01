@@ -18,12 +18,13 @@ function Home() {
     <div>
       <h2>게시판</h2>
       <Link to='/write'>작성</Link>
+      <br></br>
       {
-        posts.map((post, i) => (
-          <div>
+        posts.map((post) => (
+          <>
             <Link to={'/post/' + post.id}>{post.title}</Link>
             <br></br>
-          </div>
+          </>
         ))
       }
     </div>
