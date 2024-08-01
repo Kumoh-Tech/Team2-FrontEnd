@@ -20,9 +20,8 @@ function Home() {
       <Link to='/write'>작성</Link>
       {
         posts.map((post, i) => (
-          <div key={i}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
+          <div>
+            <Link to={'/post/' + post.id}>{post.title}</Link>
             <br></br>
           </div>
         ))
