@@ -1,21 +1,44 @@
-import React, { useState } from 'react';
-import { addPost } from '../apis/api';
+import React, { useState, useEffect } from 'react';
+import { addPost, getPost, updatePost } from '../apis/api';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PostWrite() {
 
-    // 잘 되긴 하는데 방법이 좀 이상하다.. 최적화가 필요할 듯
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
+    // 서버에서 게시글을 가져온다. (수정 페이지로 쓰이는 경우에만 해당)
+    useEffect(() => {
+        if (id) {
+            const fetchPost = async (i) => {
+                const data = await getPost(i);
+                setTitle(data.title);
+                setContent(data.content);
+            };
+            fetchPost(id);
+        }
+    }, []);
+
+    // 수정 페이지라면 PUT 요청, 새 게시글 작성 페이지라면 POST 요청
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await addPost({ title, content });
-            setTitle('');
-            setContent('');            
-        } catch (error) {
-            console.error('Error adding post:', error);
+        if (id) {
+            try {
+                await updatePost(id, { title, content });
+            } catch (error) {
+                console.error('Error updating post:', error);
+            }
+            navigate(`/post/${id}`);
+        } else {
+            try {
+                await addPost({ title, content });
+            } catch (error) {
+                console.error('Error adding post:', error);
+            }
+            navigate('/');
         }
     };
 

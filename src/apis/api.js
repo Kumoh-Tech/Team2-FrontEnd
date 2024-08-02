@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// 백앤드 배포되면 URL 수정하기
+// 백앤드 배포되면 URL 수정하기 (로컬호스트 말고 그쪽 앤드포인트로)
 
-// SELECT * from post
+// 모든 게시글 목록을 다 가져온다.   => SELECT * from post
 const getPosts = async () => {
     try {
         const result = await axios.get('http://localhost:8080/');
@@ -13,10 +13,21 @@ const getPosts = async () => {
     }
 }
 
-// INSERT (title, content) into post
-const addPost = async (post) => {
+// 특정 게시글을 하나 끄집어온다.   => SELECT * from post where id = i
+const getPost = async (i) => {
     try {
-        const result = await axios.post('http://localhost:8080/', post);
+        const result = await axios.get('http://localhost:8080/post/' + i);
+        return result.data;
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        return [];
+    }
+}
+
+// 작성한 게시글을 서버 DB에 등록한다.   => INSERT (title, content) into post
+const addPost = (post) => {
+    try {
+        const result = axios.post('http://localhost:8080/', post);
         return result.data;
     } catch (error) {
         console.error('Error adding post:', error);
@@ -24,4 +35,26 @@ const addPost = async (post) => {
     }
 };
 
-export { getPosts, addPost };
+// 특정 게시글을 삭제한다.   => DELETE from post where id = i
+const delPost = (i) => {
+    try {
+        const result = axios.delete(`http://localhost:8080/${i}`);
+        return result.data;
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        throw error;
+    }
+}
+
+// 특정 게시글을 수정한다.   => UPDATE post SET title = (edited title), content = (edited content) WHERE id = i
+const updatePost = (i, data) => {
+    try {
+        const result = axios.put(`http://localhost:8080/${i}`, data);
+        return result.data;
+    } catch (error) {
+        console.error('Error updating post:', error);
+        throw error;
+    }
+}
+
+export { getPosts, getPost, addPost, delPost, updatePost };
