@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
-import useStore from '../store/store.js'
+import React from 'react';
+import { Link } from "react-router-dom";
+import useStore from '../store/store.js';
+import '../styles/Navbar.css'; 
 
 function Navbar() {
-    const { user } = useStore()
+    const { user } = useStore();
     return (
         <div className="black-nav">
             <Link to="/" className='nav-btn'>게시판</Link>
@@ -13,7 +15,7 @@ function Navbar() {
                 <span>{user.isLoggedIn ? user.userInfo : "로그인"} </span>
             </div>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

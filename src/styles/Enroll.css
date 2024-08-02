@@ -1,0 +1,26 @@
+.enroll-page {
+    padding: 20px;
+}
+
+.enroll-page h2 {
+    margin-bottom: 20px;
+}
+
+.enroll-page table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.enroll-page th, .enroll-page td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.enroll-page th {
+    background-color: #f2f2f2;
+}
+
+.enroll-page tr:hover {
+    background-color: #f1f1f1;
+}

@@ -1,0 +1,19 @@
+.black-nav {
+    background: black;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    color: white;
+    padding: 10px;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.ml-auto {
+    margin-left: auto;
+}

@@ -1,10 +1,18 @@
-import './styles/App.css'
-import './styles/Components.css'
-import Navbar from './components/Navbar.js'
-import Home from './pages/Home.js'
-import Enroll from './pages/Enroll.js'
-import Post from './pages/Post.js'
-import PostWrite from './pages/PostWrite.js'
+import './styles/App.css';
+import './styles/Components.css';
+import './styles/Home.css';
+import './styles/index.css';
+import './styles/PostWrite.css';
+import './styles/Post.css';
+import './styles/Enroll.css';
+import './styles/Box.css'; 
+import './styles/Navbar.css'; 
+
+import Navbar from './components/Navbar.js';
+import Home from './pages/Home.js';
+import Enroll from './pages/Enroll.js';
+import Post from './pages/Post.js';
+import PostWrite from './pages/PostWrite.js';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
