@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getPosts } from '../apis/api';
 import { Link } from 'react-router-dom';
+import '../styles/Home.css'; 
 
 function Home() {
   const [posts, setPosts] = useState([]);
 
-  // 서버에서 게시글 목록을 가져온다. (SELECT * from post)
   useEffect(() => {
     const fetchPosts = async () => {
       const data = await getPosts();
@@ -15,18 +15,20 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <h2>게시판</h2>
-      <Link to='/write'>작성</Link>
-      <br></br>
-      {
-        posts.map((post) => (
-          <>
-            <Link to={'/post/' + post.id}>{post.title}</Link>
-            <br></br>
-          </>
-        ))
-      }
+      <Link to='/write' className="write-link">작성</Link>
+      <div className="post-list">
+        {posts.map((post, i) => (
+          <div className="post" key={i}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+            <div className="post-actions">
+              <Link to={`/post/${post.id}`} className="view-link">보기</Link>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

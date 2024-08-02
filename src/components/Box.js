@@ -1,6 +1,7 @@
+import React from 'react';
+import '../styles/Box.css'; 
+
 function Box() {
-    
-    // 아래 내용들 state에 JSON 담아서 바인딩 하는 방식으로 수정할 것
     return (
         <div className="Box">
             <h3>자료구조</h3>
@@ -8,7 +9,7 @@ function Box() {
             <p>담주에 수업 있나요?</p>
             <p>혹시 강의자료 코드 저만 이상한가요..</p>
         </div>
-    )
+    );
 }
 
-export default Box
+export default Box;

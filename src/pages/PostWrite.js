@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addPost, getPost, updatePost } from '../apis/api';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../styles/PostWrite.css'; 
 
 function PostWrite() {
 
@@ -20,7 +21,7 @@ function PostWrite() {
             };
             fetchPost(id);
         }
-    }, []);
+    }, [id]);
 
     // 수정 페이지라면 PUT 요청, 새 게시글 작성 페이지라면 POST 요청
     const handleSubmit = async (e) => {
@@ -43,8 +44,8 @@ function PostWrite() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="post-write-form">
+            <div className="form-group">
                 <label>제목</label>
                 <input
                     type="text"
@@ -53,7 +54,7 @@ function PostWrite() {
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>내용</label>
                 <textarea
                     value={content}
@@ -61,7 +62,7 @@ function PostWrite() {
                     required
                 ></textarea>
             </div>
-            <button type="submit">작성</button>
+            <button type="submit" className="submit-button">작성</button>
         </form>
     );
 }
