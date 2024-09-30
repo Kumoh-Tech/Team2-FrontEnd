@@ -57,4 +57,16 @@ const updatePost = (i, data) => {
     }
 }
 
-export { getPosts, getPost, addPost, delPost, updatePost };
+// 작성한 게시글을 서버 DB에 등록한다.   => INSERT (title, content) into post
+const addComment = (comment) => {
+    try {
+        const result = axios.post('http://localhost:8080/comment', comment);
+        return result.data;
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        throw error;
+    }
+};
+
+
+export { getPosts, getPost, addPost, delPost, updatePost, addComment };
