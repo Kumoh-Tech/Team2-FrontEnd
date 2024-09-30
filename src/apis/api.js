@@ -24,6 +24,16 @@ const getPost = async (i) => {
     }
 }
 
+const getComment = async (postId) => {
+    try {
+        const result = await axios.get('http://localhost:8080/comment/' + postId);
+        return result.data;
+    } catch (error) {
+        console.error('Error fetching comment:', error);
+        return [];
+    }
+}
+
 // 작성한 게시글을 서버 DB에 등록한다.   => INSERT (title, content) into post
 const addPost = (post) => {
     try {
@@ -69,4 +79,4 @@ const addComment = (comment) => {
 };
 
 
-export { getPosts, getPost, addPost, delPost, updatePost, addComment };
+export { getPosts, getPost, addPost, delPost, updatePost, addComment, getComment };
