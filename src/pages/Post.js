@@ -49,7 +49,7 @@ function Post() {
 
     return (
         <>
-            <div className="post-page">
+            <div className="box">
                 <h3>{post.title}</h3>
                 <p>{post.content}</p>
                 <div className="post-actions">
@@ -57,12 +57,12 @@ function Post() {
                     <button onClick={() => handleDel(post.id)}>🗑️</button>
                 </div>
             </div>
-            <div style={{ backgroundColor: '#eee', padding: '10px' }}>
+            <div className='box'>
                 <p>댓글</p>
 
                 {
                     comment.map((item) => (
-                        <div key={item.id} style={{ backgroundColor: 'white', border: '1px black solid' }}>
+                        <div key={item.id}>
                             <p>{item.username}</p>
                             <p>{item.content}</p>
                         </div>
@@ -73,12 +73,7 @@ function Post() {
                     <input
                         type="text"
                         value={newcomment} // 댓글 입력 상태를 input에 연결
-                        style={{
-                            width: '80%',
-                            padding: '10px',
-                            borderRadius: '4px',
-                            fontSize: '16px',
-                        }}
+
                         onChange={(e) => setNewComment(e.target.value)}
                         placeholder="Enter text"
                     />
