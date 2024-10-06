@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getPosts } from '../apis/api';
 import { Link } from 'react-router-dom';
-import '../styles/Home.css'; 
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -20,7 +19,7 @@ function Home() {
       <Link to='/write' className="write-link">작성</Link>
       <div className="post-list">
         {posts.map((post, i) => (
-          <div className="post" key={i}>
+          <div className="box" key={i}>
             <h3>{post.title}</h3>
             <p>{post.content}</p>
             <div className="post-actions">

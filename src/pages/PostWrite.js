@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { addPost, getPost, updatePost } from '../apis/api';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../styles/PostWrite.css'; 
 
 function PostWrite() {
 
@@ -44,26 +43,28 @@ function PostWrite() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="post-write-form">
-            <div className="form-group">
-                <label>제목</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label>내용</label>
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    required
-                ></textarea>
-            </div>
-            <button type="submit" className="submit-button">작성</button>
-        </form>
+        <div className='box'>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>제목</label>
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>내용</label>
+                    <textarea
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        required
+                    ></textarea>
+                </div>
+                <button type="submit" className="submit-button">작성</button>
+            </form>
+        </div>
     );
 }
 
