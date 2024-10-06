@@ -15,17 +15,22 @@ function Home() {
 
   return (
     <div className="home">
-      <h2>게시판</h2>
-      <Link to='/write' className="write-link">작성</Link>
-      <div className="post-list">
+
+      <div className="flex-container">
+        <h2>자유게시판</h2>
+        <div style={{ flexGrow: '1' }}></div>
+        <Link to='/write' className="primary-btn">글쓰기</Link>
+      </div>
+
+      <div>
         {posts.map((post, i) => (
-          <div className="box" key={i}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <div className="post-actions">
-              <Link to={`/post/${post.id}`} className="view-link">보기</Link>
+
+          <Link to={`/post/${post.id}`}>
+            <div className="box post" key={i}>
+              <h3>{post.title}</h3>
+              <p>{post.content}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

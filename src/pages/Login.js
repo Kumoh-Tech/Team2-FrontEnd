@@ -13,27 +13,28 @@ function Login() {
 
     return (
         <div className='box'>
-            <h2>Login</h2>
+            <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <div>
-                    <label>Email:</label>
                     <input
                         type="email"
                         value={email}
+                        placeholder='아이디'
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
                 <div>
-                    <label>Password:</label>
                     <input
                         type="password"
                         value={password}
+                        placeholder='비밀번호'
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                <button className='submit-button' type="submit">Login</button>
+                <button className='primary-btn' type="submit">회원가입</button>
+                <button className='primary-btn' type="submit">로그인</button>
             </form>
         </div>
     );

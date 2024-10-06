@@ -17,14 +17,16 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/post/:id" element={<Post />}></Route>
-        <Route path="/write" element={<PostWrite />} />
-        <Route path="/edit/:id" element={<PostWrite />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="*" element={<div>없는 페이지입니다. (404)</div>} />
-      </Routes>
+      <div className='content'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<Post />}></Route>
+          <Route path="/write" element={<PostWrite />} />
+          <Route path="/edit/:id" element={<PostWrite />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="*" element={<div>없는 페이지입니다. (404)</div>} />
+        </Routes>
+      </div>
     </div>
   );
 }
