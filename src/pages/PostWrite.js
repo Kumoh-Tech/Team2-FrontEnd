@@ -62,7 +62,7 @@ function PostWrite() {
                         required
                     ></textarea>
                 </div>
-                <button type="submit" className="submit-button">작성</button>
+                <button type="submit" className="primary-btn">작성</button>
             </form>
         </div>
     );

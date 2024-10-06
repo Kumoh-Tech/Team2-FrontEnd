@@ -2,20 +2,6 @@
   padding: 20px;
 }
 
-.write-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-.write-link:hover {
-  background-color: #0056b3;
-}
-
 .post-list {
   display: flex;
   flex-direction: column;

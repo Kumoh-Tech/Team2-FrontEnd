@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPost, delPost, addComment, getComment } from '../apis/api';
+import { Link } from 'react-router-dom';
 import '../styles/Post.css';
 
 function Post() {
@@ -53,32 +54,33 @@ function Post() {
                 <h3>{post.title}</h3>
                 <p>{post.content}</p>
                 <div className="post-actions">
-                    <button onClick={() => navigate(`/edit/${post.id}`)}>✏️</button>
-                    <button onClick={() => handleDel(post.id)}>🗑️</button>
+                    <Link to={`/edit/${post.id}`} className="primary-btn">수정</Link>
+                    <Link onClick={() => handleDel(post.id)} className="primary-btn">삭제</Link>
                 </div>
             </div>
             <div className='box'>
-                <p>댓글</p>
+                <h3>댓글 {comment.length}개</h3>
 
                 {
                     comment.map((item) => (
-                        <div key={item.id}>
-                            <p>{item.username}</p>
+                        <div key={item.id} className='comment'>
+                            <p><b>{item.username}</b></p>
                             <p>{item.content}</p>
                         </div>
                     ))
                 }
 
-                <form onSubmit={handleCommentSubmit}>
-                    <input
-                        type="text"
-                        value={newcomment} // 댓글 입력 상태를 input에 연결
-
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="Enter text"
-                    />
-                    <button type="submit" className="submit-button">작성</button>
-                </form>
+                <div>
+                    <form onSubmit={handleCommentSubmit}>
+                        <input
+                            type="text"
+                            value={newcomment}
+                            placeholder='댓글을 입력하세요.'
+                            onChange={(e) => setNewComment(e.target.value)}
+                        />
+                        <button type="submit" className="primary-btn">작성</button>
+                    </form>
+                </div>
             </div>
         </>
     );

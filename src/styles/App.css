@@ -1,4 +1,5 @@
-h3, p {
+h3,
+p {
   margin: 0px
 }
 
@@ -40,11 +41,32 @@ h3, p {
 
 /* Dark Mode */
 body {
-  background-color: #121212; /* 어두운 배경 */
-  color: white; /* 텍스트 색상 */
+  background-color: #121212;
+  /* 어두운 배경 */
+  color: white;
+  /* 텍스트 색상 */
+}
+
+.content {
+  margin-top: 80px;
 }
 
 /* h1, h2, p 등 모든 텍스트 요소 */
-h1, h2, h3, h4, h5, h6, p {
-  color: inherit; /* 부모 요소의 색상을 따르게 설정 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
 }
