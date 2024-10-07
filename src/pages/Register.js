@@ -10,8 +10,8 @@ function Register() {
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         // 비밀번호 일치 여부 확인
         if (password !== confirmPassword) {
