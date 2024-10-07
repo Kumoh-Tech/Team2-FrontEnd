@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -17,11 +19,10 @@ function Login() {
             <form onSubmit={handleLogin}>
                 <div>
                     <input
-                        type="email"
-                        value={email}
+                        type="text"
+                        value={username}
                         placeholder='아이디'
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div>
@@ -30,11 +31,11 @@ function Login() {
                         value={password}
                         placeholder='비밀번호'
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+
                     />
+                    <button onClick={() => { navigate('/register') }} className='primary-btn'>회원가입</button>
+                    <button className='primary-btn' type="submit">로그인</button>
                 </div>
-                <button className='primary-btn' type="submit">회원가입</button>
-                <button className='primary-btn' type="submit">로그인</button>
             </form>
         </div>
     );
