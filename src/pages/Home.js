@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import useStore from '../store/store.js';
 import { getPosts } from '../apis/api';
 import { Link } from 'react-router-dom';
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const { user } = useStore();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,7 +21,12 @@ function Home() {
       <div className="flex-container">
         <h2>자유게시판</h2>
         <div style={{ flexGrow: '1' }}></div>
-        <Link to='/write' className="primary-btn">글쓰기</Link>
+        {
+          user.isLoggedIn ?
+            <Link to='/write' className="primary-btn">글쓰기</Link> :
+            <p>로그인 후 글을 작성하실 수 있습니다.</p>
+        }
+
       </div>
 
       <div>
