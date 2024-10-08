@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import useStore from './../store/store.js';
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+    const login = useStore((state) => state.login);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        // 로그인 로직 처리
+        try {
+            const response = await axios.post('http://localhost:8080/login', {
+                username: username,
+                password: password,
+            });
+
+            // JWT 토큰을 localStorage에 저장
+            localStorage.setItem('token', response.data.token);
+            console.log('로그인 성공:', response.data);
+            login(response.data.userInfo);
+            navigate('/')
+        } catch (error) {
+            setErrorMessage((error.response?.data?.message || error.message));
+        }
 
     };
 
@@ -17,11 +36,10 @@ function Login() {
             <form onSubmit={handleLogin}>
                 <div>
                     <input
-                        type="email"
-                        value={email}
+                        type="text"
+                        value={username}
                         placeholder='아이디'
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div>
@@ -30,11 +48,12 @@ function Login() {
                         value={password}
                         placeholder='비밀번호'
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+
                     />
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                    <button className='primary-btn' type="submit">로그인</button>
+                    <button onClick={() => { navigate('/register') }} className='primary-btn'>회원가입</button>                    
                 </div>
-                <button className='primary-btn' type="submit">회원가입</button>
-                <button className='primary-btn' type="submit">로그인</button>
             </form>
         </div>
     );

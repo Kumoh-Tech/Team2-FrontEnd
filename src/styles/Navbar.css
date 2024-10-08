@@ -21,8 +21,19 @@
     padding: 10px;
     color: white;
     text-decoration: none;
+    background-color: #121212;
+}
+
+.nav-title {
+    margin: 0 0 0 10px
 }
 
 .ml-auto {
     margin-left: auto;
+}
+
+.nav-logo {
+    max-width: 30px;
+    border-radius: 50px;
+    height: auto;
 }
