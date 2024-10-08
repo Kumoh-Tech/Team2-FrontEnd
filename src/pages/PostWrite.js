@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import useStore from '../store/store.js';
 import { addPost, getPost, updatePost } from '../apis/api';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PostWrite() {
-
+    const { user } = useStore();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ function PostWrite() {
             navigate(`/post/${id}`);
         } else {
             try {
-                await addPost({ title, content });
+                await addPost({ title, content, author: user.userInfo.displayname });
             } catch (error) {
                 console.error('Error adding post:', error);
             }

@@ -51,8 +51,8 @@ function Login() {
 
                     />
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                    <button onClick={() => { navigate('/register') }} className='primary-btn'>회원가입</button>
                     <button className='primary-btn' type="submit">로그인</button>
+                    <button onClick={() => { navigate('/register') }} className='primary-btn'>회원가입</button>                    
                 </div>
             </form>
         </div>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
+    const [displayname, setDisplayname] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -24,13 +25,14 @@ function Register() {
             const response = await axios.post('http://localhost:8080/register', {
                 username: username,
                 password: password,
+                displayname: displayname
             });
 
             if (response.status === 201) {
                 navigate('/');
             }
         } catch (error) {
-            setErrorMessage('회원가입 실패: ' + (error.response?.data?.message || error.message));
+            setErrorMessage(error.response?.data?.message || error.message);
         }
     };
 
@@ -66,6 +68,16 @@ function Register() {
                         value={confirmPassword}
                         placeholder="비밀번호 확인"
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>닉네임</label>
+                    <input
+                        type="text"
+                        value={displayname}
+                        placeholder="닉네임"
+                        onChange={(e) => setDisplayname(e.target.value)}
                         required
                     />
                 </div>
