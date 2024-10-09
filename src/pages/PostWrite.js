@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useStore from '../store/store.js';
-import { addPost, getPost, updatePost } from '../apis/api';
+import { addPost, getPost, updatePost } from '../apis/post';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PostWrite() {
