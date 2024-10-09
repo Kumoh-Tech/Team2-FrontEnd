@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Axios 인스턴스 생성
 const auth = axios.create({
-    baseURL: 'http://localhost:8080/', // 서버의 기본 URL
+    baseURL: 'http://localhost:8080/users/', // 서버의 기본 URL
 });
 
 // 요청 인터셉터 설정

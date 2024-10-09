@@ -22,7 +22,7 @@ function Register() {
 
         try {
             // 회원가입 데이터를 백엔드로 전송
-            const response = await axios.post('http://localhost:8080/register', {
+            const response = await axios.post('http://localhost:8080/users/register', {
                 username: username,
                 password: password,
                 displayname: displayname
