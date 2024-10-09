@@ -5,7 +5,6 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 // 모든 게시글 목록을 다 가져온다. => SELECT * from post
 const getPosts = async () => {
     try {
-        console.log(API_BASE_URL);
         const result = await axios.get(`${API_BASE_URL}/posts`);
         return result.data;
     } catch (error) {
@@ -21,16 +20,6 @@ const getPost = async (i) => {
         return result.data;
     } catch (error) {
         console.error('Error fetching post:', error);
-        return [];
-    }
-}
-
-const getComment = async (postId) => {
-    try {
-        const result = await axios.get(`${API_BASE_URL}/comments/${postId}`);
-        return result.data;
-    } catch (error) {
-        console.error('Error fetching comment:', error);
         return [];
     }
 }
@@ -66,17 +55,6 @@ const updatePost = async (i, data) => {
         console.error('Error updating post:', error);
         throw error;
     }
-}
-
-// 작성한 게시글을 서버 DB에 등록한다. => INSERT (title, content) into post
-const addComment = async (comment) => {
-    try {
-        const result = await axios.post(`${API_BASE_URL}/comments`, comment);
-        return result.data;
-    } catch (error) {
-        console.error('Error adding comment:', error);
-        throw error;
-    }
 };
 
-export { getPosts, getPost, addPost, delPost, updatePost, addComment, getComment };
+export { getPosts, getPost, addPost, delPost, updatePost };

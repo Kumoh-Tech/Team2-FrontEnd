@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useStore from '../store/store.js';
-import { getPosts } from '../apis/api';
+import { getPosts } from '../apis/post';
 import { Link } from 'react-router-dom';
 
 function Home() {

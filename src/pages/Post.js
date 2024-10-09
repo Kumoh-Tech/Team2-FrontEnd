@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useStore from '../store/store';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getPost, delPost, addComment, getComment } from '../apis/api';
+import { getPost, delPost } from '../apis/post';
+import { addComment, getComment } from '../apis/comment';
 import { Link } from 'react-router-dom';
 import '../styles/Post.css';
 
