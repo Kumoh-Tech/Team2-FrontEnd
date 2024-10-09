@@ -3,7 +3,7 @@ import logo from './../assets/logo.png';
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import useStore from '../store/store.js';
-import auth from '../apis/auth.js';
+import { auth } from '../apis/auth.js';
 import '../styles/Navbar.css';
 
 function Navbar() {

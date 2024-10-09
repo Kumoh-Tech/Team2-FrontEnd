@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useStore from './../store/store.js';
+import { handleLogin } from './../apis/auth.js';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -10,30 +10,15 @@ function Login() {
     const navigate = useNavigate();
     const login = useStore((state) => state.login);
 
-    const handleLogin = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:8080/users/login', {
-                username: username,
-                password: password,
-            });
-
-            // JWT 토큰을 localStorage에 저장
-            localStorage.setItem('token', response.data.token);
-            console.log('로그인 성공:', response.data);
-            login(response.data.userInfo);
-            navigate('/')
-        } catch (error) {
-            setErrorMessage((error.response?.data?.message || error.message));
-        }
-
+        handleLogin(username, password, login, navigate, setErrorMessage);
     };
 
     return (
         <div className='box'>
             <h1>Login</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={onSubmit}>
                 <div>
                     <input
                         type="text"
@@ -48,11 +33,10 @@ function Login() {
                         value={password}
                         placeholder='비밀번호'
                         onChange={(e) => setPassword(e.target.value)}
-
                     />
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <button className='primary-btn' type="submit">로그인</button>
-                    <button onClick={() => { navigate('/register') }} className='primary-btn'>회원가입</button>                    
+                    <button onClick={() => navigate('/register')} className='primary-btn'>회원가입</button>
                 </div>
             </form>
         </div>
